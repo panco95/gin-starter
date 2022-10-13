@@ -1,6 +1,6 @@
 # Gin-Starter
 
-A fast http franmwork by gin, use dependency injection structure, not global variable.
+A fast http framework by gin, use dependency injection structure, not global variable.
 
 # RUN
 
