@@ -5,7 +5,6 @@ import (
 	"lovebox/pkg/gin/middlewares"
 	"lovebox/pkg/jwt"
 	"lovebox/pkg/tracing"
-	"lovebox/pkg/utils"
 	"lovebox/services/account"
 	"lovebox/services/system"
 
@@ -63,8 +62,8 @@ func NewPackages() (pkgs *Packages) {
 	}
 
 	{
-		viper.SetDefault("jwt.key", "suanzi")
-		viper.SetDefault("jwt.issue", "SZKJ")
+		viper.SetDefault("jwt.key", "lovebox")
+		viper.SetDefault("jwt.issue", "panco")
 		pkgs.jwt = jwt.New(
 			[]byte(viper.GetString("jwt.key")),
 			viper.GetString("jwt.issue"),
@@ -72,7 +71,7 @@ func NewPackages() (pkgs *Packages) {
 	}
 
 	{
-		viper.SetDefault("redis.uri", "192.168.16.131:6379")
+		viper.SetDefault("redis.uri", "127.0.0.1:6379")
 		viper.SetDefault("redis.password", "")
 		viper.SetDefault("redis.db", 0)
 		rdb := redislib.NewClient(&redislib.Options{
@@ -100,8 +99,6 @@ func NewServices(pkgs *Packages) *Services {
 		pkgs.mysqlClient,
 	)
 
-	viper.SetDefault("login.rsaPrivateKey", utils.DefaultRSAPrivateKey)
-	viper.SetDefault("login.rsaPublicKey", utils.DefaultRSAPublicKey)
 	accountSvc := account.NewService(
 		pkgs.mysqlClient,
 		pkgs.redisClient,
