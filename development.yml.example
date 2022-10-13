@@ -1,0 +1,15 @@
+http:
+  public:
+    port: 8080
+
+mysql:
+  logLevel: 0
+  addr: user:pass@tcp(127.0.0.1:3306)/lovebox?charset=utf8mb4&parseTime=True&loc=Local
+  maxIdleConns: 10
+  maxOpenConns: 100
+  connMaxLifetime: "1h"
+
+redis:
+  uri: 192.168.115.128
+  password: Panco0825...
+  db: 0
